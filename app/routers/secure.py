@@ -5,5 +5,5 @@ from auth import get_user
 router = APIRouter()
 
 @router.get("/")
-async def get_testrouter(user: dict = Depends(get_user)):
+async def get_testrouter():
     return user
