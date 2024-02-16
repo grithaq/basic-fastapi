@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 
 from auth import get_user
-from db import get_products
+from db_on_mem import get_products
 
 router = APIRouter()
 
