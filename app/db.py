@@ -11,10 +11,17 @@ users = {
             "name": "Alice"
         },
     }
+products = [
+    {"id":1, "name": "Shampo Nature", "price": 26000},
+    {"id":2, "name": "Sabun Garnier", "price": 32000},
 
+]
 
 def check_api_key(api_key: str):
     return api_key in api_keys
 
 def get_user_from_api_key(api_key: str):
     return users[api_keys[api_key]]
+
+def get_products():
+    return products
