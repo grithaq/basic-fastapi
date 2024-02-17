@@ -26,7 +26,6 @@ async def add_product(id: int = 3, name: str = 'nuvo', price: int = 10000):
         "price": int(price)
     }
     return db_on_mem.add_product(product)
-    
 @router.put("/{product_id}")
 async def update_product(product_id: str , product: Product):
     print(product.dict())

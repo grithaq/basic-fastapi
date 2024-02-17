@@ -1,49 +1,41 @@
-api_keys = {
-        "e54d4431-5dab-474e-b71a-0db1fcb9e659": "7oDYjo3d9r58EJKYi5x4E8",
-        "5f0c7127-3be9-4488-b801-c7b6415b45e9": "mUP7PpTHmFAkxcQLWKMY8t"
-    }
+class Product():
+    def __init__(self, id, name, price):
+        self.id = id
+        self.name = name
+        self.price = price
+
+    def __str__(self):
+        return f"{self.id} {self.name} {self.price}"
     
-users = {
-        "7oDYjo3d9r58EJKYi5x4E8": {
-            "name": "Bob"
-        },
-        "mUP7PpTHmFAkxcQLWKMY8t": {
-            "name": "Alice"
-        },
-    }
 
-products = [
-    {"id":1, "name": "Shampo Nature", "price": 26000},
-    {"id":2, "name": "Sabun Garnier", "price": 32000},
+class ListProduct():
+    products = []
 
-]
-
-def check_api_key(api_key: str):
-    return api_key in api_keys
-
-def get_user_from_api_key(api_key: str):
-    return users[api_keys[api_key]]
-
-def get_products():
-    return products
-
-def add_product(product):
-    products.append(product)
-    return products
-
-def get_product(id: int):
-    return products[id]
-
-def update_product(p_id, product):
-    for p in products:
-        if p["id"] == p_id:
-            p["id"] = product["id"]
-            p["name"] = product["name"]
-            p["price"] = product["price"]
-    return products
+    def get_products(self):
+        return self.products
     
-def delete_product(p_id):
-    for p in enumerate(products):
-        if p[1]['id'] == int(p_id):
-            products.pop(p[0])
-    return products
+    def add_product(self, product):
+        self.products.append(product)
+        return f"{product.name} was added"
+    
+    def find_product_index(self, product_id: int):
+        for index, product in enumerate(self.products):
+            if product.id == product_id:
+                return index
+        return -1  # Product not found
+    
+    def update_product(self, product_id: int, new_product: Product):
+        index = self.find_product_index(product_id)
+        if index != -1:
+            self.products[index] = new_product
+            return f"{new_product.name} was updated"
+        else:
+            return f"Product with ID {product_id} not found"
+    
+    def delete_product(self, product_id: int):
+        index = self.find_product_index(product_id)
+        if index != -1:
+            del self.products[index]
+            return f"Product with ID {product_id} was deleted"
+        else:
+            return f"Product with ID {product_id} not found"
