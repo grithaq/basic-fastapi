@@ -1,30 +1,20 @@
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel
+from schema import Product
 
 import db_on_mem
 
 router = APIRouter()
 
-class Product(BaseModel):
-    id: int
-    name: str
-    price: int
-
-
 @router.get("/")
 async def get_all_products():
-    return db_on_mem.get_products()
+    return db_on_mem.db_product.get_products()
 
 @router.post("/")
-async def add_product(id: int = 3, name: str = 'nuvo', price: int = 10000):
-    product = {
-        "id": int(id),
-        "name": name,
-        "price": int(price)
-    }
-    return db_on_mem.add_product(product)
+async def add_product(product: Product):
+    db_on_mem.db_product.add_product(product)
+    return f"{product.name} was added"
 @router.put("/{product_id}")
 async def update_product(product_id: str , product: Product):
     print(product.dict())
