@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 
 from routers import public, product
-from auth import get_user
+
 
 app = FastAPI()
 
