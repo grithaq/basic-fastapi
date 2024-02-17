@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends
 
-from auth import get_user
-from db_on_mem import get_products
+from db_on_mem import db_product
 
 router = APIRouter()
 
@@ -11,4 +10,4 @@ async def get_testroute():
 
 @router.get("/products")
 async def get_all_products():
-    return get_products()
+    return db_product.get_products()

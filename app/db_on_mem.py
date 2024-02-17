@@ -39,3 +39,5 @@ class ListProduct():
             return f"Product with ID {product_id} was deleted"
         else:
             return f"Product with ID {product_id} not found"
+        
+db_product = ListProduct()

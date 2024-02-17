@@ -3,7 +3,6 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
 
-from auth import get_user
 import db_on_mem
 
 router = APIRouter()
