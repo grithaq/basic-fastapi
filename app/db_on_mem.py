@@ -15,20 +15,18 @@ class ListProduct():
         return self.products
     
     def add_product(self, product):
-        self.products.append(product)
+        self.products.append(product.model_dump(exclude_unset=True))
         return f"{product.name} was added"
     
-    def find_product_index(self, product_id: int):
-        for index, product in enumerate(self.products):
-            if product.id == product_id:
-                return index
-        return -1  # Product not found
     
     def update_product(self, product_id: int, new_product: Product):
         for index, product in enumerate(self.products):
+            print(index, product)
+            print(type(self.products[0]))
+            print(self.products[index]['id'] == int(product_id))
             if int(product_id) == self.products[index]['id']:
-                self.products[index] = new_product
-                return f"{new_product.name} was added"
+                self.products[index] = new_product.model_dump(exclude_unset=True)
+                return f"product was updated"
         return "product is not found"
 
     
