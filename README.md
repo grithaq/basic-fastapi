@@ -1,2 +1,1 @@
-# iquiz-fastapi
-iquiz-fastapi
+# fastapi-basic
