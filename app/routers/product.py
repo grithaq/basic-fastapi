@@ -21,4 +21,4 @@ async def update_product(product_id: str , product: Product):
 
 @router.delete("/{product_id}")
 async def delete_product(product_id: str):
-    return db_on_mem.delete_product(product_id)
+    return db_on_mem.db_product.delete_product(product_id)
