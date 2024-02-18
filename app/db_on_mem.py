@@ -21,8 +21,6 @@ class ListProduct():
     
     def update_product(self, product_id: int, new_product: Product):
         for index, product in enumerate(self.products):
-            print(index, product)
-            print(type(self.products[0]))
             print(self.products[index]['id'] == int(product_id))
             if int(product_id) == self.products[index]['id']:
                 self.products[index] = new_product.model_dump(exclude_unset=True)
