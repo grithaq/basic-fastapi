@@ -17,8 +17,7 @@ async def add_product(product: Product):
     return f"{product.name} was added"
 @router.put("/{product_id}")
 async def update_product(product_id: str , product: Product):
-    print(product.dict())
-    return db_on_mem.update_product(int(product_id), product.dict())
+    return db_on_mem.db_product.update_product(product_id, product)
 
 @router.delete("/{product_id}")
 async def delete_product(product_id: str):
